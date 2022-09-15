@@ -161,3 +161,5 @@ resource "aws_ecs_service" "devops-ninja-service" {
     security_groups  = [aws_security_group.ecs_container.id]
   }
 }
+
+resource "aws_ecs"

@@ -20,7 +20,7 @@ jobs:
         go-version: 1.18
 
     - name: Build
-      run: go build -v ../../ninja/
+      run: go build -v ./../../ninja
 
     - name: Teste go
-      run: go test -v ../../ninja/
+      run: go test -v ./../../ninja
