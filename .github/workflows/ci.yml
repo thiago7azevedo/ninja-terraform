@@ -19,5 +19,8 @@ jobs:
       with:
         go-version: 1.18
 
+    - name: Build
+      run: go build -v ./...
+
     - name: Teste go
-      run: go mod init ; go test -v ../../ninja
+      run: go test -v ./...
