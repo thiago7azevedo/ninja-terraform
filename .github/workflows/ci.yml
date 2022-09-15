@@ -20,4 +20,5 @@ jobs:
         go-version: 1.18
 
     - name: Test
+      run: go mod init
       run: go test -v ../../ninja/
