@@ -9,8 +9,8 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
-    #env:
-      #MICROSERVICE_LOCATION: api/redirect/
+    env:
+      MICROSERVICE_LOCATION: /home/runner/work/ninja-terraform/ninja-terraform
     steps:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@v3
