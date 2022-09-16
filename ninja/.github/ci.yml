@@ -20,4 +20,4 @@ jobs:
         go-version: 1.18
 
     - name: Teste go
-      run: go test -o ./main_test.go
+      run: go test -o ./...
