@@ -19,4 +19,8 @@ jobs:
         go-version: 1.18
 
     - name: Teste go
-      run: go test -o ./...
+      run: |
+        pwd
+        ls -lah
+        locate main.go
+        go test -o ./...
