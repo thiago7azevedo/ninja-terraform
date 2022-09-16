@@ -18,13 +18,13 @@ jobs:
       - name: Generate Mocks and Run Tests
         working-directory: ${{ env.MICROSERVICE_LOCATION }}
         run: |
-          env
           pwd
-          ls -lah
           export GOPATH="$HOME/go/"
           export PATH=$PATH:$GOPATH/bin
           go install github.com/golang/mock/mockgen@v1.6.0
           go install github.com/jstemmer/go-junit-report@latest
+          go mod init
+          ls -lah
           go generate ./...
           go test -v ./... | go-junit-report -set-exit-code > report.xml          
         
