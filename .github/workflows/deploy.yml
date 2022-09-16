@@ -12,7 +12,7 @@ env:
   AWS_REGION: us-east-1                   
   #ECR_REPOSITORY: demo-repo        
   ECS_SERVICE: devops-ninja-service              
-  ECS_CLUSTER: cluster              
+  ECS_CLUSTER: cluster-devops              
   ECS_TASK_DEFINITION: devops-ninja-task_definition 
   CONTAINER_NAME: devops-ninja
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
