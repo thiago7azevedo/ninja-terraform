@@ -46,16 +46,18 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
-    - name: Login to Amazon ECR
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
+    #- name: Login to Amazon ECR
+      #id: login-ecr
+      #uses: aws-actions/amazon-ecr-login@v1
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
           #ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         IMAGE_TAG: latest
+        DOCKERHUB_TOKEN: ${{ env.DOCKERHUB_TOKEN }}
+        DOCKERHUB_USERNAME: ${{ env.DOCKERHUB_USERNAME }}
       run: |
-        docker login -u {{ env.DOCKERHUB_USERNAME }} -p {{ env.DOCKERHUB_TOKEN }}
+        docker login -u DOCKERHUB_USERNAME -p DOCKERHUB_TOKEN
         cd ninja
         docker build --file ./Dockerfile -t thiago7azeveo/devops-ninja:latest .
         docker push thiago7azeveo/devops-ninja:latest
