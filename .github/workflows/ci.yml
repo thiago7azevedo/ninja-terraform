@@ -20,6 +20,7 @@ jobs:
         run: |
           env
           pwd
+          ls -lah
           export GOPATH="$HOME/go/"
           export PATH=$PATH:$GOPATH/bin
           go install github.com/golang/mock/mockgen@v1.6.0
