@@ -1,8 +1,7 @@
 ## Saudações
-Prezados, obrigado pela oportunidade em realizar o teste da Get Ninjas, para o cargo de Devops. Pude me desafiar e mergulhar ainda mais em aprendizado e disciplina.
+Prezados, obrigado pela oportunidade em realizar o teste da Get Ninjas, para o cargo de Devops. Foi de fato um baita desafio, pude mergulhar ainda mais em aprimoramento, aprendizado e disciplina.
 
 ## Descrição
-
 Bem, seguindo com as questões, utilizei o Terraform para criação da IA, onde subi toda a infra em uma conta pessoal na AWS. Após a estrutura estar pronta com o primeiro Deploy, utilzei o Actions do próprio Github para prover os testes e a integração continua necessária para maior eficiência desde o desenvolimento até a produção. 
 
 Neste teste, decidi fugir um pouco da minha zona de conforto. Entendi que subir a aplicação em simples docker em uma instância de EC2, atrás de um reverso como NGINX por exemplo, seria bastante simplório pelo nível técnico do teste. 
@@ -14,16 +13,21 @@ Outro ponto importante foi a criação de um LB também em forma de código, ond
 
 Sendo assim, creio cumprido com a entrega de todos os requisitos, onde fico à disposição para qualquer dúvida ou sugestão.
 
-## Build da imagem
+## Pré-requisitos
+- Install [Terraform v1.2.9](https://www.terraform.io/cli/install/apt)
+- Install [Go v1.18] https://go.dev/dl/go1.18beta1.linux-amd64.tar.gz
+- Account in DockerHub [Docker](https://docs.docker.com/engine/install/ubuntu/)
+- Account in DockerHub [DockeeHub](https://hub.docker.com/)
 
+## Build da imagem
 Utilizei um Dockerfile para a montagem da imagem através do código em GOLANG fornecido. Neste arquivo, setei o scratch para diminuir o tamanho da imagem gerada em GO e expus a porta 8000 conforme a aplicação pede.
 
+OBS: Para efetuar o build na sua conta local, alterar o usuário e patch.
 `docker image build -t thiago7azeveo/devops-ninja:latest .`
 
 `docker tag aa8989cebde0 thiago7azeveo/devops-ninja:latest`
 
 ## Push para DockerHub
-
 Após o Build da imagem, efetuei o login na minha conta do docker hub, gerando uma tag e mandei a imagem para o repositório remoto.
 
 `docker login -u USÁRIO -p SENHA`
@@ -31,7 +35,6 @@ Após o Build da imagem, efetuei o login na minha conta do docker hub, gerando u
 `docker image push thiago7azeveo/devops-ninja:latest`
 
 ## Código em Terraform para deploy em ECS
-
 A montagem da infraestrutura necessária para subir a imagem criada na AWS, foi bastante interessante pelas formas que existem. EKS, EC2, LB ou ECS, esta ultima acabou sendo minha escolha pelo fato de poder entregar escalabilidade, segurança e facilidade de gerenciamento.
 
 Procurei deixar o código o mais limpo possível, onde segmentei o `remote_state`, `ecs` e `modules`. 
@@ -44,7 +47,6 @@ Para poder fazer o deploy de toda a infra, é necessário seguir os seguintes pa
 3. Seguindo a premissa de que os passos 1 e 2 foram criados corretamente, é necessário novamente efetuar o deploy do ecs, afim de habilitar a task `terraform apply -var="release_version=1" -lock=false --auto-approve`
 
 ## CI/CD Github Actions
-
 Após a subida com sucesso de toda a infra nos passos anteriores, finalizo a entrega do teste com um Action no github, onde a partir de um push, pull ou create, efetua o teste da aplicação em GO, bem como o deploy automático do container no ECS da AWS. 
 Em tempo, são necessários o cadastramento dos secrets actions no settings do projeto: `AWS_ACCESS_KEY_ID`, `AWS_REGION`, `AWS_SECRET_ACCESS_KEY`, `DOCKERHUB_TOKEN` e `DOCKERHUB_USERNAME`.
 
