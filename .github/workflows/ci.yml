@@ -20,8 +20,6 @@ jobs:
 
     - name: Teste go
       run: |
-        pwd
         cd ninja
-        ls -lah
         go build -v ./...
         go test -v ./...
