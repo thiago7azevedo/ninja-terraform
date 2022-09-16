@@ -62,10 +62,8 @@ jobs:
         docker build --file ./Dockerfile -t thiago7azeveo/devops-ninja:latest .
         docker push thiago7azeveo/devops-ninja:latest
         echo "::set-output name=image::thiago7azeveo/devops-ninja:latest"
-    - name: Download task definition
-       run: |
-         aws ecs describe-task-definition --task-definition devops-ninja-task_definition \
-         --query taskDefinition > task-definition.json        
+        aws ecs describe-task-definition --task-definition devops-ninja-task_definition \
+         --query taskDefinition > task-definition.json     
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
