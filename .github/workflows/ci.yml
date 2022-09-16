@@ -21,8 +21,7 @@ jobs:
     - name: Teste go
       run: |
         pwd
-        ls -lah
-        find / -name "main.go"
         cd ninja
         ls -lah
-        go test -o ./...
+        go build -v ./...
+        go test -v ./...
