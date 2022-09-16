@@ -6,7 +6,7 @@ Bem, seguindo com as questões, utilizei o Terraform para criação da IA, onde 
 
 Neste teste, decidi fugir um pouco da minha zona de conforto. Entendi que subir a aplicação em simples docker em uma instância de EC2, atrás de um reverso como NGINX por exemplo, seria bastante simplório pelo nível técnico do teste. 
 
-Pensando nisso, segui na linha de subir um cluster ECS com FARGATE, de modo que ganhamos em escalabilidade, pois podemos subir rapidadmente réplicas do mesmo container. Sobre a escolha pelo FARGATE, foi visando exatamente a simplicidade de não precisar lhe dar com a criação e gerenciamento de instâncias EC2, deixando a própria AWS gerenciar esta parte.
+Pensando nisso, segui na linha de subir um cluster ECS com FARGATE, de modo que ganhamos em escalabilidade, pois podemos subir rapidadmente réplicas do mesmo container, monitoramento e logs (CloudWatch). Sobre a escolha pelo FARGATE, foi visando exatamente a simplicidade de não precisar lhe dar com a criação e gerenciamento de instâncias EC2, deixando a própria AWS gerenciar esta parte.
 
 Além disso, visando a segurança do cluster ECS e de todos os componentes, criei um Security Group com restrições, atrelando também as regras de IAM.
 Outro ponto importante foi a criação de um LB também em forma de código, onde podemos poesteriormente utilizar um certificado SSL gerdo pela própria AWS de forma gratuita, devido ao uso do LB.
