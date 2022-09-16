@@ -18,6 +18,8 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: '1.18.x'
+      - name: Inicio go
+        run: go mod init server
       - name: Install dependencies
         run: go get .
       - name: Build
