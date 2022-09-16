@@ -2,8 +2,12 @@ name: Deploy to Amazon ECS
 on:
   create:
     branches: [ master ]
-    tags:
-      - .*
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+    #tags:
+      #- .*
 env:
   AWS_REGION: us-east-1                   
   #ECR_REPOSITORY: demo-repo        
