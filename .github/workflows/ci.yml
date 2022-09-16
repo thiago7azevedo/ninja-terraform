@@ -10,7 +10,7 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     env:
-      MICROSERVICE_LOCATION: /home/runner/work/ninja-terraform/ninja-terraform
+      MICROSERVICE_LOCATION: api/redirect/
     steps:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@v3
@@ -18,13 +18,12 @@ jobs:
       - name: Generate Mocks and Run Tests
         working-directory: ${{ env.MICROSERVICE_LOCATION }}
         run: |
-          ls -lah ~
+          pwd
           export GOPATH="$HOME/go/"
           export PATH=$PATH:$GOPATH/bin
           go install github.com/golang/mock/mockgen@v1.6.0
           go install github.com/jstemmer/go-junit-report@latest
-          go mod init server
-          ls -lah
+          cd ninja
           go generate ./...
           go test -v ./... | go-junit-report -set-exit-code > report.xml          
         
