@@ -6,15 +6,6 @@ module "vpc" {
   vpc_cidr_block = var.vpc_cidr_block
 }
 
-#resource "aws_ecr_repository" "devops-ninja-ecs" {
-  #name                 = "devops-ninja-ecs"
-  #image_tag_mutability = "MUTABLE"
-
-  #image_scanning_configuration {
-    #scan_on_push = true
-  #}
-#}
-
 resource "aws_security_group" "allow_http_lb" {
   name        = "allow_http_lb"
   description = "Allow http inbound traffic"
@@ -146,7 +137,7 @@ resource "aws_ecs_service" "devops-ninja-service" {
   name            = "devops-ninja-service"
   cluster         = aws_ecs_cluster.cluster.id
   task_definition = aws_ecs_task_definition.devops-ninja-task_definition[0].arn
-  desired_count   = 2
+  desired_count   = 3
   launch_type     = "FARGATE"
 
   load_balancer {
