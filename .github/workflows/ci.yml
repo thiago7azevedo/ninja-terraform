@@ -9,8 +9,8 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
-    env:
-      MICROSERVICE_LOCATION: api/redirect/
+    #env:
+      #MICROSERVICE_LOCATION: api/redirect/
     steps:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@v3
@@ -18,6 +18,8 @@ jobs:
       - name: Generate Mocks and Run Tests
         working-directory: ${{ env.MICROSERVICE_LOCATION }}
         run: |
+          env
+          pwd
           export GOPATH="$HOME/go/"
           export PATH=$PATH:$GOPATH/bin
           go install github.com/golang/mock/mockgen@v1.6.0
