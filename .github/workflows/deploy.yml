@@ -57,7 +57,7 @@ jobs:
         DOCKERHUB_TOKEN: ${{ env.DOCKERHUB_TOKEN }}
         DOCKERHUB_USERNAME: ${{ env.DOCKERHUB_USERNAME }}
       run: |
-        docker login -u DOCKERHUB_USERNAME -p DOCKERHUB_TOKEN
+        docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
         cd ninja
         docker build --file ./Dockerfile -t thiago7azeveo/devops-ninja:latest .
         docker push thiago7azeveo/devops-ninja:latest
