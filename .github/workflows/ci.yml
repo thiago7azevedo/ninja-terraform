@@ -7,20 +7,27 @@ on:
     branches: [ "master" ]
 
 jobs:
-
-  test:
-    name: Teste go - Devops-Ninja
+  tests:
     runs-on: ubuntu-latest
+    env:
+      MICROSERVICE_LOCATION: api/redirect/
     steps:
-    - uses: actions/checkout@v3
-
-    - name: Set up Go v3
-      uses: actions/setup-go@v3
-      with:
-        go-version: 1.18
-
-    - name: Build
-      run: go build -v ./../../ninja
-
-    - name: Teste go
-      run: go test -v ./../../ninja
+      - name: 'Checkout GitHub Action'
+        uses: actions/checkout@v3
+        
+      - name: Generate Mocks and Run Tests
+        working-directory: ${{ env.MICROSERVICE_LOCATION }}
+        run: |
+          export GOPATH="$HOME/go/"
+          export PATH=$PATH:$GOPATH/bin
+          go install github.com/golang/mock/mockgen@v1.6.0
+          go install github.com/jstemmer/go-junit-report@latest
+          go generate ./...
+          go test -v ./... | go-junit-report -set-exit-code > report.xml          
+        
+      - name: Test Summary
+        uses: test-summary/action@v1
+        with:
+          paths: |
+                        ${{ env.MICROSERVICE_LOCATION }}/report.xml
+        if: always()
