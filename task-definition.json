@@ -1,0 +1,45 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:286893626531:task-definition/devops-ninja-task_definition:12",
+    "containerDefinitions": [
+        {
+            "name": "devops-ninja",
+            "image": "thiago7azeveo/devops-ninja",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "containerPort": 8000,
+                    "hostPort": 8000,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": []
+        }
+    ],
+    "family": "devops-ninja-task_definition",
+    "executionRoleArn": "arn:aws:iam::286893626531:role/ecs_task_execution_role",
+    "networkMode": "awsvpc",
+    "revision": 12,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "256",
+    "memory": "512"
+}
