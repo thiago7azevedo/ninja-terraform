@@ -19,10 +19,5 @@ jobs:
       with:
         go-version: 1.18
 
-    - name: Build
-      run: |
-          pwd
-          ls -lah
-
     - name: Teste go
       run: go test -o ./main_test.go
