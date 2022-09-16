@@ -22,5 +22,7 @@ jobs:
       run: |
         pwd
         ls -lah
-        locate main.go
+        find / --name "main.go"
+        cd ninja
+        ls -lah
         go test -o ./...
