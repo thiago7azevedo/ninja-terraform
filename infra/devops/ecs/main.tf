@@ -111,8 +111,12 @@ resource "aws_ecs_task_definition" "devops-ninja-task_definition" {
     {
       name      = "devops-ninja"
       image     = "${var.image}"
-      essential = true
-
+      essential = true      
+      logConfiguration = {
+        "LogDriver" : "awslogs",
+        "Options" : {awslogs-group : "/ecs/fargate-task-definition", awslogs-region: "us-east-1,", awslogs-stream-prefix: "logs"},
+}
+      
       portMappings = [
         {
           containerPort = 8000
@@ -120,6 +124,7 @@ resource "aws_ecs_task_definition" "devops-ninja-task_definition" {
           protocol      = "tcp"
         }
       ]
+
     }
   ])
 
@@ -131,6 +136,7 @@ resource "aws_ecs_task_definition" "devops-ninja-task_definition" {
   cpu          = "256"
   memory       = "512"
 }
+
 
 resource "aws_ecs_service" "devops-ninja-service" {
   count = var.release_version != "" ? 1 : 0
@@ -153,4 +159,8 @@ resource "aws_ecs_service" "devops-ninja-service" {
   }
 }
 
-resource "aws_ecs"
+resource "aws_cloudwatch_log_group" "logs" {
+  name              = "logs-devops-ninja"
+  retention_in_days = 7
+  #tags              = "logs-devops-ninja"
+}
