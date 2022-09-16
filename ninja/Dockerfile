@@ -11,3 +11,4 @@ FROM scratch
 COPY --from=builder /app/server /server
 ENTRYPOINT [ "/server" ]
 EXPOSE 8000/tcp
+ENV  MSG="Hello World!"

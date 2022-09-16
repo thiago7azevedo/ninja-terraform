@@ -1,7 +1,7 @@
 name: Deploy to Amazon ECS
 on:
   create:
-    branches: [ master ]
+    branches: [ "master" ]
   push:
     branches: [ "master" ]
   pull_request:
@@ -10,7 +10,6 @@ on:
       #- .*
 env:
   AWS_REGION: us-east-1                   
-  #ECR_REPOSITORY: demo-repo        
   ECS_SERVICE: devops-ninja-service              
   ECS_CLUSTER: cluster-devops              
   ECS_TASK_DEFINITION: devops-ninja-task_definition 
