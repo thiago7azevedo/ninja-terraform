@@ -15,7 +15,7 @@ Sendo assim, creio cumprido com a entrega de todos os requisitos, onde fico à d
 
 ## Pré-requisitos
 - Install [Terraform v1.2.9](https://www.terraform.io/cli/install/apt)
-- Install [Go v1.18] https://go.dev/dl/go1.18beta1.linux-amd64.tar.gz
+- Install [Go v1.18](https://go.dev/dl/go1.18beta1.linux-amd64.tar.gz)
 - Account in DockerHub [Docker](https://docs.docker.com/engine/install/ubuntu/)
 - Account in DockerHub [DockeeHub](https://hub.docker.com/)
 
